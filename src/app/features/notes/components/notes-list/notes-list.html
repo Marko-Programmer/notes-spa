@@ -1,0 +1,46 @@
+<div class="notes-container">
+  <div class="header-section d-flex justify-content-between align-items-center">
+    <h2 class="page-title">Notes List</h2>
+    <span class="count-badge">{{ notes().length }} Total</span>
+  </div>
+
+  <div class="table-responsive">
+    <table class="custom-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Content</th>
+          <th class="text-center">Priority</th>
+          <th>Date</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of notes(); track item.id) {
+          <tr [appPriorityHighlight]="item.priority">
+            <td class="id-text">#{{item.id}}</td>
+            <td class="title-text">{{item.title | titlecutter}}</td>
+            <td class="content-text">{{item.content}}</td>
+            <td class="text-center">
+              <span class="priority-label" [attr.data-priority]="item.priority">
+                {{item.priority}}
+              </span>
+            </td>
+            <td class="date-text">{{item.createdAt | date: 'dd.MM.yyyy'}}</td>
+            <td class="text-end">
+              <button class="btn-action edit" [routerLink]="['/notes/edit', item.id]">Edit</button>
+              <button class="btn-action delete" (click)="deleteNote(item.id)">Delete</button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="6" class="empty-state text-center py-5">
+              No notes available. Start by creating one.
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

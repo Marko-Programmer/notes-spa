@@ -1,0 +1,23 @@
+<nav class="navbar custom-nav mt-3 px-4 d-flex justify-content-between align-items-center"> 
+  <a routerLink="/" class="logo"> Notes SPA </a>
+  
+  <ul class="nav-links list-unstyled m-0 d-flex gap-3"> 
+    <li class="nav-item">
+      <a 
+        routerLink="/notes" 
+        routerLinkActive="active" 
+        [routerLinkActiveOptions]="{exact: true}"
+        class="nav-link">
+        All Notes
+      </a>
+    </li>
+    <li class="nav-item">
+      <a 
+        routerLink="/notes/add" 
+        routerLinkActive="active" 
+        class="nav-link">
+        Create New
+      </a>
+    </li>
+  </ul>
+</nav>
